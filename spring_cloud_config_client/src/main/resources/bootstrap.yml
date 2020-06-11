@@ -1,16 +1,16 @@
-server:
-  port: 8002
 spring:
-  application:
-    name: config_server
   cloud:
     config:
-      server:
-        git:
-          uri: https://github.com/ctl666/ctlConfig
-          default-label: master
-          search-paths: config-repo
-
+      # 对应 {label} 部分，即 Git 的分支
+      label: master
+      # 对应 {application} 部分
+      name: system
+      profile: dev
+      discovery:
+        # 开启 Config 服务发现与注册
+        enabled: true
+        # 指定 config的server服务
+        service-id: config_server
 eureka:
   instance:
     prefer-ip-address: true

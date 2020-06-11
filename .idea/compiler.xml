@@ -6,17 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="euraka_demo" />
-        <module name="eureka_client_customer" />
         <module name="eureka_client_provider" />
-        <module name="spring_cloud_config_server1" />
+        <module name="eureka_client_customer" />
+        <module name="euraka_demo" />
         <module name="spring_cloud_config_server2" />
+        <module name="spring_cloud_config_server1" />
+        <module name="spring_cloud_config_client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="euraka_demo" target="1.8" />
       <module name="eureka_client_customer" target="1.8" />
       <module name="eureka_client_provider" target="1.8" />
+      <module name="spring_cloud_config_client" target="1.8" />
       <module name="spring_cloud_config_server1" target="1.8" />
       <module name="spring_cloud_config_server2" target="1.8" />
     </bytecodeTargetLevel>
@@ -26,6 +28,7 @@
       <module name="euraka_demo" options="-parameters" />
       <module name="eureka_client_customer" options="-parameters" />
       <module name="eureka_client_provider" options="-parameters" />
+      <module name="spring_cloud_config_client" options="-parameters" />
       <module name="spring_cloud_config_server1" options="-parameters" />
       <module name="spring_cloud_config_server2" options="-parameters" />
     </option>
