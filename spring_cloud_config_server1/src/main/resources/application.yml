@@ -1,0 +1,33 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: config_server_1
+  cloud:
+    config:
+      server:
+        git:
+          #仓库地址
+          uri: https://github.com/ctl666/ctlConfig
+          #git分支
+          default-label: master
+          #配置文件加路径
+          search-paths: config-repo
+          #仓库用户名（公开库可以不用填）
+          #username:
+          #仓库密码（公开库可以不用填）
+          #password:
+eureka:
+  instance:
+    #使用ip代替实例名
+    prefer-ip-address: true
+    #实例主机名
+    hostname: ${spring.cloud.client.ip-address}
+    #实例id的规则
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+  client:
+    service-url:
+      #注册中心地址
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+
+

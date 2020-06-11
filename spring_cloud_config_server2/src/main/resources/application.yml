@@ -1,0 +1,21 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: spring_conf_server_2
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ctl666/ctlConfig
+          default-label: master
+          search-paths: config-repo
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: ${spring.cloud.client.ip-address}
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/

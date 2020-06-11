@@ -1,0 +1,28 @@
+#端口
+server:
+  port: 8090
+#服务应用名
+spring:
+  application:
+    name: euraka-customer
+
+eureka:
+  instance:
+    #使用ip代替实例名
+    prefer-ip-address: true
+    #实例的主机名
+    hostname: ${spring.cloud.client.ip-address}
+    # 实例的 ID 规则
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+  client:
+    service-url:
+      #注册中心
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        #开启监控端点
+        include: hystrix.stream
+      base-path: /
