@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/euraka_demo/euraka_demo.iml" filepath="$PROJECT_DIR$/euraka_demo/euraka_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka_client_customer/eureka_client_customer.iml" filepath="$PROJECT_DIR$/eureka_client_customer/eureka_client_customer.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka_client_provider/eureka_client_provider.iml" filepath="$PROJECT_DIR$/eureka_client_provider/eureka_client_provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_cloud_config_client/spring_cloud_config_client.iml" filepath="$PROJECT_DIR$/spring_cloud_config_client/spring_cloud_config_client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_cloud_config_client/spring_cloud_config_client.iml" filepath="$PROJECT_DIR$/spring_cloud_config_client/spring_cloud_config_client.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring_cloud_config_server1/spring_cloud_config_server1.iml" filepath="$PROJECT_DIR$/spring_cloud_config_server1/spring_cloud_config_server1.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring_cloud_config_server2/spring_cloud_config_server2.iml" filepath="$PROJECT_DIR$/spring_cloud_config_server2/spring_cloud_config_server2.iml" />
     </modules>
