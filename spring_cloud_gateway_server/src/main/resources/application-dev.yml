@@ -1,0 +1,47 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #是否与服务注册和发现组件相结合，设置true后可以直接使用服务名调用服务
+          enabled: true
+      routes:
+        - id: route_dev
+          uri: lb://dashboard-b
+          predicates:
+            #- Method=GET
+            - Path=/all/aa
+            - Method=GET
+          filters:
+            #截取路劲位数
+            - StripPrefix=1
+            - AddRequestParameter=aa, three
+            #熔断
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                fallbackUri: forward:/fallback
+            - name: RequestRateLimiter
+              args:
+                ### 限流过滤器的 Bean 名称
+                key-resolver: '#{@uriKeyResolver}'
+                ### 希望允许用户每秒处理多少个请求
+                redis-rate-limiter.replenishRate: 1
+                ### 用户允许在一秒钟内完成的最大请求数
+                redis-rate-limiter.burstCapacity: 3
+
+eureka:
+  instance:
+    #使用ip代替实例名
+    prefer-ip-address: true
+    #实例的主机名
+    hostname: ${spring.cloud.client.ip-address}
+    # 实例的 ID 规则
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+logging:
+  level:
+    # log级别
+    org.springframework.cloud.gateway: debug

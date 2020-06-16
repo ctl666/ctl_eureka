@@ -5,6 +5,22 @@ server:
 spring:
   application:
     name: dashboard-b
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC&useSSL=true
+    password: 123456
+    username: root
+  redis:
+    host: 192.168.199.222
+    port: 6379
+    database: 0
+    password: root
+  rabbitmq:
+    host: 81.68.111.61
+    username: admin
+    password: admin
+    port: 5672
+    virtual-host: my_vhost
+
 
 eureka:
   instance:
@@ -19,6 +35,9 @@ eureka:
       #注册中心
       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
 
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 

@@ -1,0 +1,12 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: spring_cloud_gateway_server
+  profiles:
+    active: dev
+  redis:
+    host: 192.168.199.222
+    port: 6379
+    database: 0
+    password: root
