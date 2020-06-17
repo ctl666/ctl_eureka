@@ -20,6 +20,18 @@ spring:
     password: admin
     port: 5672
     virtual-host: my_vhost
+  mail:
+    username: 1223240795@qq.com
+    password: nxknpdvriggmjgfj
+    host: smtp.qq.com
+#    properties:
+#      main:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#            required: true
+
 
 
 eureka:

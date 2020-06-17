@@ -6,11 +6,18 @@ import com.ctl.eureka_client_provider.service.EmpService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +28,8 @@ public class DemoController {
     EmpService empService;
     @Autowired
     RabbitTemplate rabbitTemplate;
+      @Autowired
+    JavaMailSenderImpl javaMailSender;
 
     @RequestMapping("/hello")
     public String sayHello(){
@@ -63,6 +72,44 @@ public class DemoController {
         Object o = rabbitTemplate.receiveAndConvert("ctl.news");
         System.out.printf(o.toString());
     }
+
+    @GetMapping("sendMail")
+    public void sendMail(){
+        //简单邮件
+        SimpleMailMessage impleMailMessages = new SimpleMailMessage();
+        //邮件标题
+        impleMailMessages.setSubject("通知-java测试");
+        //邮件内容
+        impleMailMessages.setText("测试内容。。。");
+        //发送人
+        impleMailMessages.setTo("1223240795@qq.com");
+        impleMailMessages.setFrom("1223240795@qq.com");
+        javaMailSender.send(impleMailMessages);
+    }
+
+    @GetMapping("sendMail2")
+    public void sendMail2(){
+        //复杂邮件
+        MimeMessage mimeMessages =javaMailSender.createMimeMessage() ;
+            try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessages,true);
+            //邮件标题
+            helper.setSubject("通知-java测试2");
+            //邮件内容
+            helper.setText("<b style='color:red'>测试内容2。。。</b>",true);
+            //发送人
+            helper.setTo("1223240795@qq.com");
+            helper.setFrom("1223240795@qq.com");
+            //上传文件
+//            FileSystemResource file=new FileSystemResource(new File("C:\\Users\\CTL\\Pictures\\Saved Pictures\\timg.jfif"));
+//            helper.addInline("picture",file);
+            helper.addAttachment("1.jpg",new File("C:\\Users\\CTL\\Pictures\\Saved Pictures\\timg.jfif"));
+            javaMailSender.send(mimeMessages);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 
