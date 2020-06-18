@@ -21,8 +21,8 @@ spring:
     port: 5672
     virtual-host: my_vhost
   mail:
-    username: 1223240795@qq.com
-    password: nxknpdvriggmjgfj
+    username: 
+    password: 
     host: smtp.qq.com
 #    properties:
 #      main:
